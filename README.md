@@ -83,8 +83,8 @@ export LDAP_BASE_DN="dc=example,dc=com"
 export LDAP_ADMIN_PASSWORD="YourSecurePassword123!"
 
 # Optional: Enable Web UI
-export LDAP_WEBUI_ENABLED=true
-export LDAP_WEBUI_PORT=8080
+export LDAP_WEB_UI_ENABLED=true
+export LDAP_WEB_UI_PORT=8080
 
 # Run
 ./ldaplite-linux-amd64 server
@@ -101,7 +101,7 @@ docker run -d \
   -p 8080:8080 \
   -e LDAP_BASE_DN=dc=example,dc=com \
   -e LDAP_ADMIN_PASSWORD=YourSecurePassword \
-  -e LDAP_WEBUI_ENABLED=true \
+  -e LDAP_WEB_UI_ENABLED=true \
   -v ldap_data:/data \
   ghcr.io/smarzola/ldaplite:latest
 
@@ -121,7 +121,7 @@ services:
     environment:
       LDAP_BASE_DN: dc=example,dc=com
       LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD}
-      LDAP_WEBUI_ENABLED: "true"
+      LDAP_WEB_UI_ENABLED: "true"
     volumes:
       - ldap_data:/data
     restart: unless-stopped
@@ -143,7 +143,7 @@ make build
 # Run with Web UI enabled
 export LDAP_BASE_DN=dc=example,dc=com
 export LDAP_ADMIN_PASSWORD=SecurePassword123!
-export LDAP_WEBUI_ENABLED=true
+export LDAP_WEB_UI_ENABLED=true
 ./bin/ldaplite server
 
 # Access Web UI at http://localhost:8080
@@ -226,9 +226,9 @@ All configuration via environment variables. No config files needed.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `LDAP_WEBUI_ENABLED` | `false` | Enable the embedded web UI |
-| `LDAP_WEBUI_PORT` | `8080` | Web UI HTTP port |
-| `LDAP_WEBUI_BIND_ADDRESS` | `0.0.0.0` | Web UI bind address |
+| `LDAP_WEB_UI_ENABLED` | `false` | Enable the embedded web UI |
+| `LDAP_WEB_UI_PORT` | `8080` | Web UI HTTP port |
+| `LDAP_WEB_UI_BIND_ADDRESS` | `0.0.0.0` | Web UI bind address |
 
 **Note**: Web UI requires authentication using admin user credentials (HTTP Basic Auth). Only members of the `cn=ldaplite.admin,ou=groups` group can access the web interface.
 
